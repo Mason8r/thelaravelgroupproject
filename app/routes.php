@@ -11,7 +11,23 @@
 |
 */
 
+Route::controller('static', 'StaticController');
+
+Route::controller('login', 'LoginController');
+
+Route::controller('/', 'HomeController');
+
+/*
+
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('welcome');
 });
+
+Route::get('user/', function()
+{
+    $name = 'Stu';
+    return $name;
+});
+
+*/
