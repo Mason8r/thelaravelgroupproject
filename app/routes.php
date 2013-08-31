@@ -17,6 +17,10 @@ Route::controller('login', 'LoginController');
 
 Route::controller('/', 'HomeController');
 
+Route::get('/', array('as' => 'home', 'uses' => 'HomeController@getIndex'));
+
+Route::get('login', array('as' => 'login', 'uses' => 'LoginController@getIndex'));
+
 /*
 
 Route::get('/', function()

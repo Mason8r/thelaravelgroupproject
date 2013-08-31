@@ -20,6 +20,27 @@ class LoginController extends BaseController {
 		return View::make('login.index');
 	}
 
+	public function postEmail()
+	{
+		
+		$user = array(
+            'email' => Input::get('email'),
+            'password' => Input::get('password')
+        );
+
+        if (Auth::attempt($user)) {
+            return Redirect::route('home')
+
+                ->with('flash_notice', 'You are successfully logged in.');
+        }
+
+        return Redirect::route('login')
+            ->with('flash_error', 'Your username/password combination was incorrect.')
+            ->withInput();
+
+	}
+
+	/*
 	public function getSocial()
 	{
 		try {
@@ -54,5 +75,6 @@ class LoginController extends BaseController {
 		// logout
 		$provider->logout();
 	}
+	*/
 
 }
