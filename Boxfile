@@ -25,6 +25,7 @@ web1:
     - "rm -f app/storage/views/*"
   before_deploy:
     - "php artisan migrate:rollback"
+    - "php artisan migrate --package=cartalyst/sentry"
     - "php artisan migrate"
     - "php artisan db:seed"
   cache1:
