@@ -17,35 +17,39 @@ class LoginController extends BaseController {
 
 	public function getIndex()
 	{
-		return View::make('login.index');
+		return View::make('login.login');
 	}
 
-	public function postIndex()
+	public function postLogin()
 	{
 		
-		$user = array(
-            'email' => Input::get('email'),
+        $credentials = array(
+            'email'    => Input::get('email'),
             'password' => Input::get('password')
         );
-
-        if (Auth::attempt($user)) {
-            return Redirect::route('home')
-
-                ->with('flash_notice', 'You are successfully logged in.');
+ 
+        try
+        {
+            $user = Sentry::authenticate($credentials, false);
+ 
+            if ($user)
+            {
+                return Redirect::route('user.home');
+            }
+            
         }
-
-        return Redirect::route('login')
-            ->with('flash_error', 'Your username/password combination was incorrect.')
-            ->withInput();
-
+        catch(\Exception $e)
+        {
+            return Redirect::route('login')->withErrors(array('login' => $e->getMessage()));
+        }
 	}
 
 	public function getLogout()
 	{
-		Auth::logout();
+		Sentry::logout();
     	
-    	return Redirect::route('home')
-    		->with('flash_notice', 'You are successfully logged out.');
+    	return Redirect::route('login')
+    		->with('flash_notice', 'Good luck with those bets.');
 
     }
 

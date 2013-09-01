@@ -2,8 +2,8 @@
 
 //Default Menu
 $default_links = array (
-	'static/about' => 'About',
-	'static/contact' => 'Contact',
+	'pages/about' => 'About',
+	'pages/contact' => 'Contact',
 	);
 
 $menu = '';
@@ -33,9 +33,9 @@ $user_links = array (
 
 $user_menu = '';
 
-if(Auth::check()) {
+if(Sentry::check()) {
   //User is logged in
-  $user_menu .= '<li><a href="'.url().'/user/'.Auth::user()->id.'">'.Auth::user()->email.'</a></li>';
+  $user_menu .= '<li><a href="'.url().'/user/home">'.Sentry::getUser()->first_name.' '.Sentry::getUser()->last_name.'</a></li>';
   $user_menu .= '<li><a href="'.url().'/login/logout">Logout</a></li>';
 
 } else {

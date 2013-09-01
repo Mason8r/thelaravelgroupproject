@@ -11,27 +11,11 @@
 |
 */
 
-Route::controller('static', 'StaticController');
-
+Route::controller('pages', 'PagesController');
 Route::controller('login', 'LoginController');
-
+Route::controller('user', 'UserController');
 Route::controller('/', 'HomeController');
 
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@getIndex'));
-
-Route::get('login', array('as' => 'login', 'uses' => 'LoginController@getIndex'));
-
-/*
-
-Route::get('/', function()
-{
-	return View::make('welcome');
-});
-
-Route::get('user/', function()
-{
-    $name = 'Stu';
-    return $name;
-});
-
-*/
+Route::get('login', array('as' => 'login', 'uses' => 'LoginController@getLogin'));
+Route::get('user/home', array('as' => 'user.home', 'uses' => 'UserController@getHome'));

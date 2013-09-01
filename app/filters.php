@@ -36,8 +36,8 @@ App::after(function($request, $response)
 Route::filter('auth', function()
 {
     // Slight change to redirect to login route
-    if(Auth::guest()) return Redirect::to('login');
-    
+    if(Sentry::guest()) return Redirect::to('login');
+
 });
 
 
@@ -59,7 +59,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+	if (Sentry::check()) return Redirect::to('/');
 });
 
 /*

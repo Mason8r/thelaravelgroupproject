@@ -7,11 +7,5 @@
     @endif
     
     <h2>Welcome, Gambler.</h2>
-    
-    @if( isset ( Auth::user()->email ) )
-
-    <h3>oh, hello {{Auth::user()->email}}</h3>
-
-    @endif
 
 @stop
