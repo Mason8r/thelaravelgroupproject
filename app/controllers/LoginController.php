@@ -20,7 +20,7 @@ class LoginController extends BaseController {
 		return View::make('login.index');
 	}
 
-	public function postEmail()
+	public function postIndex()
 	{
 		
 		$user = array(
@@ -39,6 +39,16 @@ class LoginController extends BaseController {
             ->withInput();
 
 	}
+
+	public function getLogout()
+	{
+		Auth::logout();
+    	
+    	return Redirect::route('home')
+    		->with('flash_notice', 'You are successfully logged out.');
+
+    }
+
 
 	/*
 	public function getSocial()

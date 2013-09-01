@@ -1,8 +1,7 @@
 <?php
 
-//Menu
+//Default Menu
 $default_links = array (
-	'login' => 'Login',
 	'static/about' => 'About',
 	'static/contact' => 'Contact',
 	);
@@ -26,6 +25,27 @@ foreach ($default_links as $uri => $name) {
 
 }
 
+//User Menu
+$user_links = array (
+  'login' => 'Login',
+  'user/signup' => 'Sign Up',
+  );
+
+$user_menu = '';
+
+if(Auth::check()) {
+  //User is logged in
+  $user_menu .= '<li><a href="'.url().'/user/'.Auth::user()->id.'">'.Auth::user()->email.'</a></li>';
+  $user_menu .= '<li><a href="'.url().'/login/logout">Logout</a></li>';
+
+} else {
+//User Needs to Login or Sign up
+  foreach ($user_links as $uri => $name) {
+    $user_menu .= '<li><a href="'.url().'/'.$uri.'">'.$name.'</a></li>';
+  }
+
+}
+
 ?>
 
 <!-- Fixed navbar -->
@@ -42,18 +62,9 @@ foreach ($default_links as $uri => $name) {
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
               {{$menu}}
-              <!--<li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Option 1</a></li>
-                  <li><a href="#">Option 2</a></li>
-                  <li><a href="#">Option 3</a></li>
-                  <li class="divider"></li>
-                  <li class="dropdown-header">Divider</li>
-                  <li><a href="#">Second 1</a></li>
-                  <li><a href="#">Second 2</a></li>
-                </ul>
-              </li>-->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              {{$user_menu}}
             </ul>
         </div><!--/.nav-collapse -->
     </div>

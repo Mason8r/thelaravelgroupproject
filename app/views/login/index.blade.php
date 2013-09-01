@@ -5,10 +5,10 @@
     <hr/>
     <!-- check for login error flash var -->
     @if (Session::has('flash_error'))
-        <div id="flash_error">{{ Session::get('flash_error') }}</div>
+        <div class="alert alert-warning">{{ Session::get('flash_error') }}</div>
     @endif
 
-    {{Form::open(array('url' => 'login/email', 'method' => 'post'))}}
+    {{Form::open(array('url' => 'login', 'method' => 'post'))}}
 
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>

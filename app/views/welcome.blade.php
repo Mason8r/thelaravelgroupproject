@@ -3,7 +3,7 @@
 @section('content')
 
     @if (Session::has('flash_notice'))
-        <div id="flash_notice">{{ Session::get('flash_notice') }}</div>
+        <div class="alert alert-success">{{ Session::get('flash_notice') }}</div>
     @endif
     
     <h2>Welcome, Gambler.</h2>
