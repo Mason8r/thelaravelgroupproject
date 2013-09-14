@@ -80,6 +80,7 @@ return array(
 
 	'providers' => array(
 
+		'Atticmedia\Anvard\AnvardServiceProvider',
 		'Fideloper\Proxy\ProxyServiceProvider',
 		'Cartalyst\Sentry\SentryServiceProvider',
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
